@@ -6,13 +6,13 @@ export default class sessionDetails extends LightningElement {
 
     _sessionId;
 
-    @api 
-    set sessionId(id){
+    @api
+    set sessionId(id) {
         this._sessionId = id;
         this.session = getSession(id);
     }
 
-    get sessionId(){
+    get sessionId() {
         return this._sessionId;
     }
 }

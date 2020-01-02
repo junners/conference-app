@@ -1,26 +1,25 @@
 import { LightningElement, track } from 'lwc';
 import { getSessions } from 'data/sessionService';
 
-export default class SessionList extends LightningElement{
+export default class SessionList extends LightningElement {
     @track sessions = [];
 
     allSessions = [];
 
     connectedCallback() {
-        getSessions()
-        .then(result => {
+        getSessions().then(result => {
             this.sessions = this.allSessions = result;
         });
     }
 
-    handleSearchKeyInput(event){
+    handleSearchKeyInput(event) {
         const searchKey = event.target.value.toLowerCase();
-        this.sessions = this.allSessions.filter(
-            session => session.name.toLowerCase().includes(searchKey)
+        this.sessions = this.allSessions.filter(session =>
+            session.name.toLowerCase().includes(searchKey)
         );
     }
 
-    handleSessionClick(event){
+    handleSessionClick(event) {
         const index = event.currentTarget.dataset.index;
         const navigateEvent = new CustomEvent('navigate', {
             detail: this.sessions[index].id
